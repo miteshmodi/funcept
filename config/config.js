@@ -9,4 +9,4 @@ const config = {
         '/funcept'
 }
 
-export default config
+module.exports = config
