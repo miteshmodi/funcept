@@ -1,0 +1,12 @@
+.thumbUp {
+    font-size: 200%;
+}
+
+.thumbDown {
+    font-size: 200%;
+}
+
+.flexible {
+    display: flex;
+    justify-content: space-between;
+}

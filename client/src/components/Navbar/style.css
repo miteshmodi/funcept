@@ -1,0 +1,14 @@
+nav.navbar.navbar-default {
+  margin-bottom: 0;
+}
+
+.siteNameNav {
+  text-align: right;
+  color: white;
+}
+
+.newFlex {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+}
