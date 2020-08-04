@@ -1,11 +1,3 @@
-.alignLeft {
-    display: flex;
-}
-
-.cardContent {
-    margin-bottom: 0;
-}
-
 .profilePic {
     width: 200px;
     margin-bottom: 15px;
