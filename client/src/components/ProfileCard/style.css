@@ -1,0 +1,12 @@
+.alignLeft {
+    display: flex;
+}
+
+.cardContent {
+    justify-content: flex-start;
+}
+
+.profilePic {
+    width: 200px;
+    margin-bottom: 15px;
+}
