@@ -1,6 +1,6 @@
-import React, {useState} from "react";
-import {Link} from 'react-router-dom'
-import {create} from '../../utils/api-user.js'
+import React, { useState } from "react"
+import { Link } from 'react-router-dom'
+import { create } from '../../utils/api-user.js'
 
 function SignUpForm() {
     const [values, setValues] = useState({
@@ -56,7 +56,9 @@ function SignUpForm() {
                 <div class="form-group">
                     <input type="password" class="form-control" id="password" placeholder="Password" value={values.password} onChange={handleChange('password')} />
                 </div>
-                <button type="submit" class="btn btn-primary" onClick={clickSubmit}>Sign Up</button>
+                <Link to="/">
+                    <button type="submit" class="btn btn-primary" onClick={clickSubmit}>Sign Up</button>
+                </Link>
                 <p className="forgot-password text-right">
                     Already registered <a href="/">sign in?</a>
                 </p>
