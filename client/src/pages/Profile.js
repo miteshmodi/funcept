@@ -2,6 +2,7 @@ import React from "react";
 import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
+import ProfileCard from "../components/ProfileCard";
 import "./style.css";
 
 function Profile() {
@@ -12,7 +13,7 @@ function Profile() {
           <Row>
             <Col size="md-12">
             <h1>Profile</h1>
-            
+            <ProfileCard />
             
             
             </Col>
