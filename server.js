@@ -18,9 +18,13 @@ app.use('/', userRoutes);
 app.use('/', authRoutes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/funcept");
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/funcept",
+  { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }
+)
+  .then(() => console.log('Database Connected'));
 
 // Start the API server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });

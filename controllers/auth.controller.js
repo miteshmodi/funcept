@@ -1,6 +1,6 @@
 const User = require('../models/user.model');
-const jwt = require( 'jsonwebtoken');
-const expressJwt = require( 'express-jwt');
+const jwt = require('jsonwebtoken');
+const expressJwt = require('express-jwt');
 const config = require('../config/config');
 
 const signin = async (req, res) => {
@@ -9,10 +9,12 @@ const signin = async (req, res) => {
             "email": req.body.email
         })
 
-        if (!user)
-            return res.status('401').json({
+        if (!user) {
+            console.log('no user found');
+            return res.status(400).json({
                 error: "User not found"
             })
+        }
 
         if (!user.authenticate(req.body.password)) {
             return res.status('401').send({
@@ -30,7 +32,7 @@ const signin = async (req, res) => {
 
         return res.json({
             token,
-            user: { _id: user._id, name: user.name, email: user.email }
+            user: { _id: user._id, name: user.firstname + ' ' + user.lastname, email: user.email }
         })
     } catch (err) {
         console.log(err)

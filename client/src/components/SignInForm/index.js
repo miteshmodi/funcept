@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { signin } from './api-auth.js'
 import auth from './auth-helper.js'
 import { Link, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux';
 
 function SignInForm(props) {
 
@@ -10,7 +11,7 @@ function SignInForm(props) {
     password: '',
     error: '',
     redirectToReferrer: false
-  })
+  });
 
   const clickSubmit = () => {
     const user = {
@@ -18,15 +19,18 @@ function SignInForm(props) {
       password: values.password || undefined
     }
 
-    signin(user).then((data) => {
+    props.signin(user).then((data) => {
       if (data.error) {
-        setValues({ ...values, error: data.error })
+        setValues({ ...values, error: data.error });
+        setTimeout(() => {
+          setValues({ ...values, error: '' });
+        }, 3000);
       } else {
         auth.authenticate(data, () => {
-          setValues({ ...values, error: '', redirectToReferrer: true })
+          setValues({ ...values, redirectToReferrer: true })
         })
       }
-    })
+    });
   }
 
   const handleChange = name => event => {
@@ -35,17 +39,24 @@ function SignInForm(props) {
 
   const { from } = props.location || {
     from: {
-      pathname: '/'
+      pathname: '/profile'
     }
   }
+
   const { redirectToReferrer } = values
   if (redirectToReferrer) {
-    return (<Redirect to={from} />)
+    return <Redirect to={from} />
   }
-
 
   return (
     <div>
+      {
+        values.error &&
+        // <p style={{ color: 'red' }}>{values.error}</p>
+        <div class="alert alert-danger" role="alert">
+          {values.error}
+        </div>
+      }
       <form>
         <div class="form-group">
           <input type="email" class="form-control" id="email" placeholder="Email" value={values.email} onChange={handleChange('email')} />
@@ -54,15 +65,15 @@ function SignInForm(props) {
           <input type="password" class="form-control" id="password" placeholder="Password" value={values.password} onChange={handleChange('password')} />
         </div>
         <br /> {
-          values.error && (<p>{values.error}</p>)
+          // values.error && (<p style={styles.error}>{values.error}</p>)
         }
-        <Link to="/profile">
-          <button type="submit" class="btn btn-primary" onClick={clickSubmit}>Sign In</button>
-        </Link>
+        {/* <Link to="/profile"> */}
+        <button type='button' class="btn btn-primary" onClick={clickSubmit}>Sign In</button>
+        {/* </Link> */}
       </form>
     </div>
   );
 
 };
 
-export default SignInForm;
+export default connect(null, { signin })(SignInForm);
