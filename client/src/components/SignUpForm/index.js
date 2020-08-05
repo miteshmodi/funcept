@@ -2,7 +2,8 @@ import React, { useState } from "react"
 import { Link } from 'react-router-dom'
 import { create } from '../../utils/api-user.js'
 
-function SignUpForm() {
+function SignUpForm({ }) {
+    let modalRef = React.useRef(null);
     const [values, setValues] = useState({
         firstname: '',
         lastname: '',
@@ -10,11 +11,20 @@ function SignUpForm() {
         password: '',
         email: '',
         open: false,
-        error: ''
+        error: '',
+        message: ''
     })
 
     const handleChange = name => event => {
-        setValues({ ...values, [name]: event.target.value })
+        if (name === 'username') {
+            let regex = /^[a-zA-Z0-9]*$/;
+            setValues({ ...values, [name]: event.target.value.replace(/[^\w\s]/gi, "") })
+        } else if (name === 'firstname' || name === 'lastname') {
+            setValues({ ...values, [name]: event.target.value.replace(/[^A-Za-z]/ig, "") })
+        }
+        else {
+            setValues({ ...values, [name]: event.target.value })
+        }
     }
 
     const clickSubmit = () => {
@@ -27,15 +37,41 @@ function SignUpForm() {
         }
         create(user).then((data) => {
             if (data.error) {
-                setValues({ ...values, error: data.error })
+                setValues({ ...values, error: data.error });
+                setTimeout(() => {
+                    setValues({ ...values, error: '' });
+                }, 5000);
             } else {
-                setValues({ ...values, error: '', open: true })
+                console.log(data);
+                setValues({
+                    ...values,
+                    firstname: '',
+                    lastname: '',
+                    username: '',
+                    password: '',
+                    email: '',
+                    open: false,
+                    error: '',
+                    message: data.message
+                })
             }
         })
     }
 
     return (
         <div>
+            {
+                values.message &&
+                <div class="alert alert-success" role="alert">
+                    {values.message}
+                </div>
+            }
+            {
+                values.error &&
+                <div class="alert alert-danger" role="alert">
+                    {values.error}
+                </div>
+            }
             <form>
                 <div class="form-group">
                     <div class="row">
@@ -56,12 +92,11 @@ function SignUpForm() {
                 <div class="form-group">
                     <input type="password" class="form-control" id="password" placeholder="Password" value={values.password} onChange={handleChange('password')} />
                 </div>
-                <Link to="/">
-                    <button type="submit" class="btn btn-primary" onClick={clickSubmit}>Sign Up</button>
-                </Link>
+                <button type="button" class="btn btn-primary" onClick={clickSubmit}>Sign Up</button>
                 <p className="forgot-password text-right">
                     Already registered <a href="/">sign in?</a>
                 </p>
+
             </form>
         </div>
     );

@@ -16,8 +16,13 @@ import axios from "axios"
 //     }
 // }
 
-const create = user => {
-    return axios.post("/api/users", user);
+const create = async user => {
+    try {
+        let res = await axios.post("/api/users", user);
+        return res.data
+    } catch (error) {
+        return error.response.data
+    }
 }
 
 const list = async (signal) => {

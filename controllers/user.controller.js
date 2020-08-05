@@ -8,9 +8,27 @@ const fs = require('fs');
 const create = async (req, res) => {
     const user = new User(req.body)
     try {
+        let emailCheck = await User.findOne({
+            "email": req.body.email
+        });
+        if (emailCheck) {
+            return res.status(400).json({
+                error: "Email already exists"
+            })
+        }
+
+        let usernameCheck = await User.findOne({
+            "username": req.body.username
+        });
+        if (usernameCheck) {
+            return res.status(400).json({
+                error: "Username already exists"
+            })
+        }
+
         await user.save()
         return res.status(200).json({
-            message: "Successfully signed up!"
+            message: "Successfully signed up! Please Login to continue"
         })
     } catch (err) {
         return res.status(400).json({
