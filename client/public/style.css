@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+
 body {
     background-color: #f0f8ff;
+    font-family: 'Rubik', sans-serif;
 }
