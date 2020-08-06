@@ -11,3 +11,7 @@ const {
 
 router.put('/post/like', requireSignin, like);
 router.put('/post/unlike', requireSignin, unlike);
+
+// for videos
+router.put('/video/like', requireSignin, like);
+router.put('/video/unlike', requireSignin, unlike);
