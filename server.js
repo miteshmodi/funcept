@@ -1,4 +1,6 @@
 require('./db-connection')();
+const dotenv = require('dotenv');
+dotenv.config();
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -19,7 +21,7 @@ app.use((req, res, next) => {
 });
 
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static("apps/build"));
+    app.use(express.static("client/build"));
 }
 
 app.use(fileUpload({

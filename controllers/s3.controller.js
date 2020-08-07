@@ -3,11 +3,13 @@ const AWS = require('aws-sdk');
 const { uuid } = require('uuidv4');
 const config = require('../config.json');
 const path = require('path');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const s3 = new AWS.S3({
-    accessKeyId: config.s3Id,
-    secretAccessKey: config.s3Secret,
-    region: config.s3Region
+    accessKeyId: process.env.S3ID,
+    secretAccessKey: process.env.S3Secret,
+    region: process.env.S3Region
 });
 
 const Manager = {

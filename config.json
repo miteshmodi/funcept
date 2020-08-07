@@ -1,10 +1,5 @@
 {
     "connectionString": "mongodb://localhost:27017/funcept",
     "port": 4000,
-    "s3Id": "AKIAJLYWHGJ6PZ4ME2UA",
-    "s3Secret": "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",
-    "s3BucketName": "funcept",
-    "s3Permissions": "public-read",
-    "s3Region": "us-west-2",
     "fileSizeLimitMBs": 10
 }
