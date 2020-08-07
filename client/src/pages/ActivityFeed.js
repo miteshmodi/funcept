@@ -3,6 +3,7 @@ import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
 import VideoCard from "../components/VideoCard";
+// import Post from "../components/Post";
 import "./style.css";
 
 function ActivityFeed() {
@@ -12,7 +13,9 @@ function ActivityFeed() {
           <Row>
             <Col size="md-12">
             <h1>Activity Feed</h1>
+
             <VideoCard />
+            {/* <Post/> */}
             </Col>
           </Row>
         </Container>
