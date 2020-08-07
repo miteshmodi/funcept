@@ -1,44 +1,53 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Provider } from 'react-redux';
-
-import ProtectedRoute from './ProtectedRoute';
-
-import store from './store';
-import Home from "./pages/Home";
-import SignUp from "./pages/SignUp";
-import Profile from "./pages/Profile";
-import ActivityFeed from "./pages/ActivityFeed";
-import UploadVideos from "./pages/UploadVideos";
-import FindPeople from "./pages/FindPeople";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Wrapper from "./components/Wrapper";
-
+import React, {useEffect, useState} from 'react';
+import './App.css';
+import {Route, Switch, BrowserRouter, Redirect} from 'react-router-dom';
+import session from './services/session';
+import Header from "./components/Header";
+import Login from './components/Login';
+import Posts from './components/Posts';
+import MyPosts from './components/MyPosts';
+import FollowingsPosts from './components/FollowingsPosts';
+import Signup from './components/Signup';
+import PostPage from "./components/PostPage";
+import Users from "./components/Users";
+import UserPosts from "./components/UserPosts";
+import UpdatePassword from "./components/UpdatePassword";
+import Profile from "./components/Profile";
+import Followings from "./components/Followings";
+import Followers from "./components/Followers";
 
 function App() {
-  return (
-    <Router>
-      <div>
-        <Provider store={store}>
-          <Navbar />
-          <Wrapper>
+    const [showHeader, setShowHeader] = useState(true);
+    const [redirectTo, setRedirectTo] = useState(null);
+    const [searchKeyword, setSearchKeyword] = useState("");
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    useEffect(() => {
+        if(session.get('user') && session.get('user')._id !== undefined) {
+            setLoggedIn(true);
+        }
+    }, []);
+
+    return (
+        <BrowserRouter>
+            {showHeader && <Header searchKeyword={searchKeyword} setSearchKeyword={text => setSearchKeyword(text)} loggedIn={loggedIn} onLogout={() => setLoggedIn(false)} />}
+            {redirectTo && <Redirect push to={redirectTo}/>}
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/signup" component={SignUp} />
-              <Route exact path="/about" component={Home} />
-              <ProtectedRoute exact path="/profile" component={Profile} />
-              <ProtectedRoute exact path="/activityfeed" component={ActivityFeed} />
-              <ProtectedRoute exact path="/uploadvideos" component={UploadVideos} />
-              <ProtectedRoute exact path="/findpeople" component={FindPeople} />
-              <Route path='*' component={() => <h1>404 Not Found</h1>} />
+                <Route exact path='/login' render={props => <Login onLogin={() => setLoggedIn(true)} />}/>
+                <Route exact path='/signup' render={props => <Signup onLogin={() => setLoggedIn(true)} />}/>
+                <Route exact path='/' render={props => <Posts searchKeyword={searchKeyword} />}/>
+                <Route exact path='/mine' render={props => <MyPosts searchKeyword={searchKeyword} />}/>
+                <Route exact path='/feed' render={props => <FollowingsPosts searchKeyword={searchKeyword} />}/>
+                <Route exact path='/posts/:id' render={props => <PostPage />}/>
+                <Route exact path='/users' render={props => <Users />}/>
+                <Route exact path='/following' render={props => <Followings />}/>
+                <Route exact path='/followers' render={props => <Followers />}/>
+                <Route exact path='/users/:id' render={props => <UserPosts />}/>
+                <Route exact path='/up' render={props => <UpdatePassword />}/>
+                <Route exact path='/profile' render={props => <Profile />}/>
             </Switch>
-          </Wrapper>
-          <Footer />
-        </Provider>
-      </div>
-    </Router>
-  );
+        </BrowserRouter>
+    );
 }
 
 export default App;

@@ -1,212 +1,152 @@
 const User = require('../models/user.model');
-const extend = require('lodash/extend');
-const errorHandler = require('../helpers/dbErrorHandler');
-const formidable = require('formidable');
-const fs = require('fs');
-// const profileImage = require('../client/assets/images/profile-pic.png');
+const Follow = require('../models/follow.model');
+const mongoose = require("mongoose");
 
-const create = async (req, res) => {
-    const user = new User(req.body)
-    try {
-        let emailCheck = await User.findOne({
-            "email": req.body.email
+const Manager = {
+    getById: async id => {
+        const t = await User.findById(id);
+        if (t === null)
+            return false;
+
+        return t;
+    },
+    getByUsername: async username => {
+        const t = await User.findOne({ username: username });
+        if (t === null)
+            return false;
+
+        return t;
+    },
+    getByEmail: async email => {
+        const t = await User.findOne({ email: email });
+        if (t === null)
+            return false;
+
+        return t;
+    },
+    create: async t => {
+        let user = new User({ ...t });
+        const r = await user.save();
+        if (r === null)
+            return false;
+
+        return r;
+    },
+    updatePassword: async (id, data) => {
+        let t = await User.findByIdAndUpdate(id, {
+            password: data.password
         });
-        if (emailCheck) {
-            return res.status(400).json({
-                error: "Email already exists"
-            })
-        }
-
-        let usernameCheck = await User.findOne({
-            "username": req.body.username
+        return t ? t : false;
+    },
+    updateProfile: async (id, data) => {
+        let t = await User.findByIdAndUpdate(id, {
+            fullname: data.fullname,
+            about: data.about
         });
-        if (usernameCheck) {
-            return res.status(400).json({
-                error: "Username already exists"
-            })
-        }
+        return t ? t : false;
+    },
+    list: async keyword => {
+        const t = await User.aggregate([
+            {
+                $match: {
+                    $or: [
+                        {fullname: {$regex: keyword, $options: 'i'}},
+                        {username: {$regex: keyword, $options: 'i'}},
+                        {email: {$regex: keyword, $options: 'i'}}
+                    ]
+                }
+            },
+            {
+                $lookup:
+                    {
+                        from: "follows",
+                        localField: "_id",
+                        foreignField: "followingId",
+                        as: "followers"
+                    }
+            }]);
 
-        await user.save()
-        return res.status(200).json({
-            message: "Successfully signed up! Please Login to continue"
-        })
-    } catch (err) {
-        return res.status(400).json({
-            error: errorHandler.getErrorMessage(err)
-        })
+        if (t === null)
+            return false;
+
+        return t;
+    },
+    following: async (keyword, userId) => {
+        let t = await Follow.find({
+            followerId: new mongoose.Types.ObjectId(userId)
+        }).populate('followingId');
+
+        t = t.map(x => x.followingId);
+        t = t.filter(x => x.fullname.includes(keyword) || x.username.includes(keyword) || x.email.includes(keyword))
+        return t;
+
+        // let t = await User.aggregate([
+        //     {
+        //         $lookup:
+        //             {
+        //                 from: "follows",
+        //                 localField: "_id",
+        //                 foreignField: "followingId",
+        //                 as: "followers"
+        //             }
+        //     },
+        //     {
+        //         $match: {
+        //             $or: [
+        //                 {fullname: {$regex: keyword, $options: 'i'}},
+        //                 {username: {$regex: keyword, $options: 'i'}},
+        //                 {email: {$regex: keyword, $options: 'i'}}
+        //             ]
+        //         }
+        //     }
+        // ]);
+        //
+        // t = t.filter(x => x.followers.length > 0);
+        // t = t.filter(x => x.followers.map(y => y.followerId === userId));
+        //
+        // if (t === null)
+        //     return false;
+        //
+        // return t;
+    },
+    followers: async (keyword, userId) => {
+        let t = await Follow.find({
+            followingId: new mongoose.Types.ObjectId(userId)
+        }).populate('followerId');
+
+        t = t.map(x => x.followerId);
+        t = t.filter(x => x.fullname.includes(keyword) || x.username.includes(keyword) || x.email.includes(keyword))
+        return t;
+        // let t = await User.aggregate([
+        //     {
+        //         $lookup:
+        //             {
+        //                 from: "follows",
+        //                 localField: "_id",
+        //                 foreignField: "followingId",
+        //                 as: "followers"
+        //             }
+        //     },
+        //     {
+        //         $match: {
+        //             $or: [
+        //                 {fullname: {$regex: keyword, $options: 'i'}},
+        //                 {username: {$regex: keyword, $options: 'i'}},
+        //                 {email: {$regex: keyword, $options: 'i'}}
+        //             ]
+        //         }
+        //     }
+        // ]);
+        //
+        // t = t.filter(x => x.followers.length > 0);
+        // console.log(JSON.stringify(t));
+        // t = t.filter(x => x.followers.map(y => y.followingId === userId));
+        //
+        // if (t === null)
+        //     return false;
+        //
+        // return t;
     }
-}
-
-/**
- * Load user and append to req.
- */
-const userByID = async (req, res, next, id) => {
-    try {
-        let user = await User.findById(id).populate('following', '_id name')
-            .populate('followers', '_id name')
-            .exec()
-        if (!user)
-            return res.status('400').json({
-                error: "User not found"
-            })
-        req.profile = user
-        next()
-    } catch (err) {
-        return res.status('400').json({
-            error: "Could not retrieve user"
-        })
-    }
-}
-
-const read = (req, res) => {
-    req.profile.hashed_password = undefined
-    req.profile.salt = undefined
-    return res.json(req.profile)
-}
-
-const list = async (req, res) => {
-    try {
-        let users = await User.find().select('name email updated created')
-        res.json(users)
-    } catch (err) {
-        return res.status(400).json({
-            error: errorHandler.getErrorMessage(err)
-        })
-    }
-}
-
-const update = (req, res) => {
-    let form = new formidable.IncomingForm()
-    form.keepExtensions = true
-    form.parse(req, async (err, fields, files) => {
-        if (err) {
-            return res.status(400).json({
-                error: "Photo could not be uploaded"
-            })
-        }
-        let user = req.profile
-        user = extend(user, fields)
-        user.updated = Date.now()
-        if (files.photo) {
-            user.photo.data = fs.readFileSync(files.photo.path)
-            user.photo.contentType = files.photo.type
-        }
-        try {
-            await user.save()
-            user.hashed_password = undefined
-            user.salt = undefined
-            res.json(user)
-        } catch (err) {
-            return res.status(400).json({
-                error: errorHandler.getErrorMessage(err)
-            })
-        }
-    })
-}
-
-const remove = async (req, res) => {
-    try {
-        let user = req.profile
-        let deletedUser = await user.remove()
-        deletedUser.hashed_password = undefined
-        deletedUser.salt = undefined
-        res.json(deletedUser)
-    } catch (err) {
-        return res.status(400).json({
-            error: errorHandler.getErrorMessage(err)
-        })
-    }
-}
-
-const photo = (req, res, next) => {
-    if (req.profile.photo.data) {
-        res.set("Content-Type", req.profile.photo.contentType)
-        return res.send(req.profile.photo.data)
-    }
-    next()
-}
-
-// const defaultPhoto = (req, res) => {
-//     return res.sendFile(process.cwd() + profileImage)
-// }
-
-const addFollowing = async (req, res, next) => {
-    try {
-        await User.findByIdAndUpdate(req.body.userId, { $push: { following: req.body.followId } })
-        next()
-    } catch (err) {
-        return res.status(400).json({
-            error: errorHandler.getErrorMessage(err)
-        })
-    }
-}
-
-const addFollower = async (req, res) => {
-    try {
-        let result = await User.findByIdAndUpdate(req.body.followId, { $push: { followers: req.body.userId } }, { new: true })
-            .populate('following', '_id name')
-            .populate('followers', '_id name')
-            .exec()
-        result.hashed_password = undefined
-        result.salt = undefined
-        res.json(result)
-    } catch (err) {
-        return res.status(400).json({
-            error: errorHandler.getErrorMessage(err)
-        })
-    }
-}
-
-const removeFollowing = async (req, res, next) => {
-    try {
-        await User.findByIdAndUpdate(req.body.userId, { $pull: { following: req.body.unfollowId } })
-        next()
-    } catch (err) {
-        return res.status(400).json({
-            error: errorHandler.getErrorMessage(err)
-        })
-    }
-}
-const removeFollower = async (req, res) => {
-    try {
-        let result = await User.findByIdAndUpdate(req.body.unfollowId, { $pull: { followers: req.body.userId } }, { new: true })
-            .populate('following', '_id name')
-            .populate('followers', '_id name')
-            .exec()
-        result.hashed_password = undefined
-        result.salt = undefined
-        res.json(result)
-    } catch (err) {
-        return res.status(400).json({
-            error: errorHandler.getErrorMessage(err)
-        })
-    }
-}
-
-const findPeople = async (req, res) => {
-    let following = req.profile.following
-    following.push(req.profile._id)
-    try {
-        let users = await User.find({ _id: { $nin: following } }).select('name')
-        res.json(users)
-    } catch (err) {
-        return res.status(400).json({
-            error: errorHandler.getErrorMessage(err)
-        })
-    }
-}
-
-module.exports = {
-    create,
-    userByID,
-    read,
-    list,
-    remove,
-    update,
-    photo,
-    addFollowing,
-    addFollower,
-    removeFollowing,
-    removeFollower,
-    findPeople
 };
+
+module.exports = Manager;
