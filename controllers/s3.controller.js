@@ -1,7 +1,6 @@
 
 const AWS = require('aws-sdk');
 const { uuid } = require('uuidv4');
-const config = require('../config.json');
 const path = require('path');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -18,10 +17,10 @@ const Manager = {
         const key = `${uuid()}${ext}`;
 
         const params = {
-            Bucket: config.s3BucketName,
+            Bucket: process.env.S3BucketName,
             Key: key,
             Body: file.data,
-            ACL: config.s3Permissions
+            ACL: process.env.S3Permissions
         };
 
         s3.upload(params, (err, data) => {
