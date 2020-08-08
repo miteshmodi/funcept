@@ -1,0 +1,5 @@
+{
+    "connectionString": "mongodb://localhost:27017/funcept",
+    "port": 4000,
+    "fileSizeLimitMBs": 10
+}

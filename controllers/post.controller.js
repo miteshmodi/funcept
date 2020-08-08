@@ -1,64 +1,163 @@
-const Post = require  ("../models/post.model");
-const { post } = require("../routes/auth.routes");
+const Post = require('../models/post.model');
+const mongoose = require("mongoose");
 
+module.exports = {
+    create: async data => {
+        let t = new Post({...data});
+        t = await t.save();
+        return t ? t : false;
+    },
+    list: async (keyword, userId) => {
+        if(!userId)
+            return await Post.aggregate([
+                { $match: { tags: { $regex: keyword, $options: 'i' }}},
+                { $lookup:
+                        {
+                            from: "users",
+                            localField: "userId",
+                            foreignField: "_id",
+                            as: "userId"
+                        }
+                },
+                { $lookup:
+                        {
+                            from: "likes",
+                            localField: "_id",
+                            foreignField: "postId",
+                            as: "likes"
+                        }
+                },
+                { $lookup:
+                        {
+                            from: "dislikes",
+                            localField: "_id",
+                            foreignField: "postId",
+                            as: "dislikes"
+                        }
+                }
+            ]).unwind('userId').sort({date: -1});
 
-// added get and post just to have something to reference by 
-exports.getPosts = (req, res) => {
-    const posts = Post.find()
-    .polulate("postedby", "_id name")
-    .select("_id title body created likes")
-    .sort({ created: -1})
-    .then(posts => {
-        res.json(posts);
-
-    })
-    .catch(err => console.log(err));
-};
-
-exports.postbyUser = (req, res) => {
-    Post.find({ postedBy: req.profile._id})
-    .polulate("postedby", "_id name")
-    .select("_id title body created likes")
-    .sort("_created")
-    .then(posts => {
-        res.json(posts);
-
-    })
-    .catch(err => console.log(err));
-}
-
-
-
-exports.like = (req, res) => {
-    post.findByIdAndUpdate(
-        req.body.postId, 
-        {$push: {likes: req.body.usedId}}, 
-        {new:true}
-        ).exec((err, result) => {
-            if(err) {
-                return res.status(404).json({
-                    error:err
-                    
-                })
-            }else {
-                res.json(result);
+        return await Post.aggregate([
+            { $match: { $and: [{tags: { $regex: keyword, $options: 'i' }}, {userId: new mongoose.Types.ObjectId(userId)}] }},
+            { $lookup:
+                    {
+                        from: "users",
+                        localField: "userId",
+                        foreignField: "_id",
+                        as: "userId"
+                    }
+            },
+            { $lookup:
+                    {
+                        from: "likes",
+                        localField: "_id",
+                        foreignField: "postId",
+                        as: "likes"
+                    }
+            },
+            { $lookup:
+                    {
+                        from: "dislikes",
+                        localField: "_id",
+                        foreignField: "postId",
+                        as: "dislikes"
+                    }
             }
-        })
-};
-
-exports.unlike = (req, res) => {
-    post.findByIdAndUpdate(
-        req.body.postId, 
-        {$pull: {likes: req.body.usedId}}, 
-        {new:true}
-        ).exec((err, result) => {
-            if(err) {
-                return res.status(404).json({
-                    error:err
-                    
-                })
-            }else {
-                res.json(result);
+        ]).unwind('userId').sort({date: -1});
+    },
+    following: async (keyword, userId) => {
+        return await Post.aggregate([
+            { $match: { $and: [
+                {tags: { $regex: keyword, $options: 'i' }},
+                {userId: new mongoose.Types.ObjectId(userId)}
+                ]
+            }},
+            { $lookup:
+                    {
+                        from: "users",
+                        localField: "userId",
+                        foreignField: "_id",
+                        as: "userId"
+                    }
+            },
+            { $lookup:
+                    {
+                        from: "likes",
+                        localField: "_id",
+                        foreignField: "postId",
+                        as: "likes"
+                    }
+            },
+            { $lookup:
+                    {
+                        from: "dislikes",
+                        localField: "_id",
+                        foreignField: "postId",
+                        as: "dislikes"
+                    }
             }
-        })
+        ]).unwind('userId').sort({date: -1});
+    },
+    get: async id => await Post.aggregate([
+        { $match: {_id: new mongoose.Types.ObjectId(id)}},
+        { $lookup:
+                {
+                    from: "users",
+                    localField: "userId",
+                    foreignField: "_id",
+                    as: "userId"
+                }
+        },
+        { $lookup:
+                {
+                    from: "likes",
+                    localField: "_id",
+                    foreignField: "postId",
+                    as: "likes"
+                }
+        },
+        { $lookup:
+                {
+                    from: "dislikes",
+                    localField: "_id",
+                    foreignField: "postId",
+                    as: "dislikes"
+                }
+        }
+    ]).unwind('userId').sort({date: -1}),
+    top: async () => await Post.aggregate([
+        { $lookup:
+                {
+                    from: "users",
+                    localField: "userId",
+                    foreignField: "_id",
+                    as: "userId"
+                }
+        },
+        { $lookup:
+                {
+                    from: "likes",
+                    localField: "_id",
+                    foreignField: "postId",
+                    as: "likes"
+                }
+        },
+        { $lookup:
+                {
+                    from: "dislikes",
+                    localField: "_id",
+                    foreignField: "postId",
+                    as: "dislikes"
+                }
+        }
+    ]).unwind('userId'),
+    update: async (id, data) => {
+        let t = await Post.findByIdAndUpdate(id, {...data});
+        return t ? t : false;
+    },
+    delete: async id => {
+        let t = await Post.findByIdAndDelete(id);
+        return t ? t : false;
+    },
+    getByUserId: async id => await Post.find({userId: id}).populate('userId'),
 }
