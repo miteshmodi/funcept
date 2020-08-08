@@ -9,7 +9,7 @@ router.post('/login', async (req, res) => {
             user = await userManager.getByEmail(req.body.username);
 
         if(!user)
-            return res.status(400).send(`User does not exists with this Username or Email.`);
+            return res.status(400).send(`User does not exists with this username or email.`);
 
         if (req.body.password === user.password) {
             return res.status(200).send(user);
@@ -25,11 +25,11 @@ router.post('/signup', async (req, res) => {
     try {
         let user = await userManager.getByUsername(req.body.username);
         if (user)
-            return res.status(400).send(`User already exists with this Username.`);
+            return res.status(400).send(`User already exists with this username.`);
 
-        user = await userManager.getByEmail(req.body.username);
+        user = await userManager.getByEmail(req.body.email);
         if (user)
-            return res.status(400).send(`User already exists with this Email.`);
+            return res.status(400).send(`User already exists with this email.`);
 
         user = await userManager.create({...req.body});
         return res.status(200).send(user);
