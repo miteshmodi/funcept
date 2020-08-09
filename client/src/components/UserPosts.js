@@ -46,7 +46,7 @@ export default function UserPosts(props) {
             <div className="row" style={{marginTop: '20px'}}>
                 <div className="col-12 col-sm-12 col-md-12">
                     {posts.length > 0 && renderPosts()}
-                    {posts.length === 0 && <div>No posts found.</div>}
+                    {posts.length === 0 && <div style={{margin: '20px'}}>No posts found.</div>}
                 </div>
             </div>
         </div>
