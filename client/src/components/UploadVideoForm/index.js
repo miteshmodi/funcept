@@ -24,6 +24,6 @@ class UploadVideoForm extends React.Component {
         </div>
       );
     }
-  };
+  }
 
 export default UploadVideoForm;
