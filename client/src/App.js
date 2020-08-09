@@ -15,6 +15,7 @@ import UpdatePassword from "./components/UpdatePassword";
 import Profile from "./components/Profile";
 import Followings from "./components/Followings";
 import Followers from "./components/Followers";
+import Footer from "./components/Footer";
 
 function App() {
     const [showHeader, setShowHeader] = useState(true);
@@ -29,9 +30,13 @@ function App() {
     }, []);
 
     return (
+        <div>
+        <div className="wrapper">
         <BrowserRouter>
+        
             {showHeader && <Header searchKeyword={searchKeyword} setSearchKeyword={text => setSearchKeyword(text)} loggedIn={loggedIn} onLogout={() => setLoggedIn(false)} />}
             {redirectTo && <Redirect push to={redirectTo}/>}
+            
             <Switch>
                 <Route exact path='/login' render={props => <Login onLogin={() => setLoggedIn(true)} />}/>
                 <Route exact path='/signup' render={props => <Signup onLogin={() => setLoggedIn(true)} />}/>
@@ -46,7 +51,11 @@ function App() {
                 <Route exact path='/up' render={props => <UpdatePassword />}/>
                 <Route exact path='/profile' render={props => <Profile />}/>
             </Switch>
+                       
         </BrowserRouter>
+        </div>
+        <Footer />
+        </div> 
     );
 }
 

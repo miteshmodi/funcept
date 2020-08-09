@@ -49,11 +49,11 @@ export default function Posts(props) {
         data.map(post => <Post reload={reload} key={post._id} post={post} />);
 
     return (
-        <div>
+        <div className="container-fluid">
             {redirectTo && <Redirect push to={redirectTo}/>}
             <div className="row">
                 <div className="col-6 col-sm-6 col-md-6 text-left">
-                    <p className="h5" style={{marginTop: '15px'}}>My Posts</p>
+                <h4 className="m-4">My Posts</h4>
                 </div>
                 <div className="col-6 col-sm-6 col-md-6 text-right">
                     {
