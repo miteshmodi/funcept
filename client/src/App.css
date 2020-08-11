@@ -20,11 +20,14 @@
   html, body {
     min-width: 100% !important;
     max-width: 100% !important;
+    background-image: url("spikes.png");
+    
   }
 }
 
 .story-box {
   border: 1px solid #cecece;
+  background-color: white;
   border-radius: 5px;
   padding: 5px;
   float: left;
@@ -189,12 +192,11 @@ font-weight: 400;
    height: 100%;
  }
 .active .nav-link {
-  color: #aed3fb !important;
+  color: white !important;
 }
 
 .footer {
   min-height: 70px;
-  background: #aed3fb;
   position: relative;
 }
 
