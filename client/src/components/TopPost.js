@@ -177,7 +177,7 @@ export default function TopPost(props) {
                         </div>
                 }
                 <div className="row">
-                    <div className="col-12 col-12 col-sm-12 col-md-12 text-left" style={{paddingTop: '10px'}}>
+                    <div className="col" style={{paddingTop: '10px'}}>
                         <span className="tags"><i className="fa fa-hashtag"></i>{props.post.tags}</span>
                     </div>
                 </div>

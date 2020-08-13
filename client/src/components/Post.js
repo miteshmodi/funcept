@@ -173,7 +173,7 @@ export default function Post(props) {
             <div className="container-fluid text-center story-box">
                 {redirectTo && <Redirect push to={redirectTo}/>}
                 <div className="row">
-                    <div className="col-12 col-sm-12 text-left">
+                    <div className="col text-left">
                         <a className="m-1" href={`/users/${props.post.userId._id}`}>{props.post.userId.username}</a>
                         <span
                             className="badge badge-pill badge-light m-1">{moment(props.post.date).fromNow(true)}</span>
