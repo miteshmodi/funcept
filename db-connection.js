@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const config = require('./config.json');
 
 module.exports = () => {
-    mongoose.connect(config.connectionString, {
+    mongoose.connect(process.env.MONGODB_URI || config.connectionString, {
         useCreateIndex: true,
         useNewUrlParser: true,
         poolSize: 5,
