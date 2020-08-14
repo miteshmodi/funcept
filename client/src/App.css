@@ -31,6 +31,10 @@
   border-radius: 5px;
   padding: 5px;
   float: left;
+  margin: 15px;
+  width: 350px;
+  max-width: 350px;
+  min-width: 350px;
   height: 20vh;
   max-height: 20vh;
   min-height: 20vh;
