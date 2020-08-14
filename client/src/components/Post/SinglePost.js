@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-import {singlePost, remove, like, unlike} from "./api-post";
-import { Redirect } from "react-router-dom";
+import {singlePost, like, unlike} from "./api-post";
 
 class SinglePost extends Component {
     state = {

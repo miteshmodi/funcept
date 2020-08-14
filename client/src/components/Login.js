@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import userService from '../services/user';
 import session from '../services/session';
 import {Redirect} from 'react-router-dom';
-import config from "../config.json";
 
 export default function Login(props) {
 

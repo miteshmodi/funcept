@@ -1,11 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import userService from '../services/user';
+import React, {useState} from 'react';
 import session from '../services/session';
 import {Redirect} from 'react-router-dom';
 import config from "../config.json";
 import moment from "moment";
-import {swalDeleteForm, swalError, swalForm, swalInfo, swalRemoveLike, swalShare, swalSuccess} from "../utils/swal";
-import postService from "../services/post";
+import {swalError, swalInfo, swalRemoveLike, swalShare, swalSuccess} from "../utils/swal";
 import mime from "mime-types";
 import likeService from "../services/like";
 import dislikeService from "../services/dislike";

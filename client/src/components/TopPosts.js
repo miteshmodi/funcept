@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import postService from "../services/post";
 import TopPost from './TopPost';
-import {swalError, swalSuccess, swalInfo, swalForm} from "../utils/swal";
-import session from '../services/session';
+import {swalError} from "../utils/swal";
 
 export default function TopPosts(props) {
 

@@ -19,7 +19,34 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc487388-bbc7-4e96-9850-fe5528ec4a12" name="Default Changelist" comment="" />
+    <list default="true" id="bc487388-bbc7-4e96-9850-fe5528ec4a12" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/FollowerUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/FollowerUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Followers.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Followers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/FollowingUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/FollowingUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Followings.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Followings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/FollowingsPosts.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/FollowingsPosts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MyPosts.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MyPosts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Post/SinglePost.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Post/SinglePost.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Posts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/ShowFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ShowFile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SignInForm/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SignInForm/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SignUpForm/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SignUpForm/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/TopPost.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/TopPost.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/TopPosts.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/TopPosts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UpdatePassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UpdatePassword.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UserPosts.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UserPosts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/utils/api-post.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/api-post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/utils/swal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/swal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/utils.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,8 +66,15 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="E:/Bootcamp-Homework/React-Portfolio-master" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -54,7 +88,7 @@
       <option name="presentableId" value="Default" />
       <updated>1596411164857</updated>
       <workItem from="1596411168304" duration="28000" />
-      <workItem from="1597375275662" duration="366000" />
+      <workItem from="1597375275662" duration="2221000" />
     </task>
     <task id="LOCAL-00001" summary="Revert &quot;made it responsive&quot;&#10;&#10;This reverts commit b81b4376">
       <created>1597375378757</created>
@@ -93,6 +127,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;made responsive&quot;&#10;&#10;This reverts commit e63cb186" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="2477" y="0" key="CommitChangelistDialog2" timestamp="1597375394384">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2477" y="0" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597375394384" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1596411194355">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

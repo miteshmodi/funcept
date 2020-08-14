@@ -1,10 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import postService from "../services/post";
 import Post from './Post';
-import TopPosts from './TopPosts';
-import {swalError, swalSuccess, swalInfo, swalForm, swalLoading} from "../utils/swal";
-import session from '../services/session';
-import Swal from 'sweetalert2';
+import {swalError} from "../utils/swal";
 
 export default function Posts(props) {
 

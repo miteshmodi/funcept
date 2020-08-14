@@ -1,9 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import userService from '../services/user';
 import session from '../services/session';
-import {Redirect} from 'react-router-dom';
-import config from "../config.json";
-import moment from "moment";
 
 export default function UpdatePassword(props) {
     const [password, setPassword] = useState('');

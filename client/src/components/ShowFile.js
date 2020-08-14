@@ -1,10 +1,4 @@
-import React, {useState, useEffect} from 'react';
-import userService from '../services/user';
-import session from '../services/session';
-import {Redirect} from 'react-router-dom';
-import config from "../config.json";
-import moment from "moment";
-import {swalDeleteForm, swalError, swalForm, swalSuccess} from "../utils/swal";
+import React from 'react';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
 import mime from "mime-types";

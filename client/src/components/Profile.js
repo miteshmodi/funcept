@@ -1,9 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import userService from '../services/user';
 import session from '../services/session';
-import {Redirect} from 'react-router-dom';
-import config from "../config.json";
-import moment from "moment";
 
 export default function Profile(props) {
     const [fullname, setFullname] = useState(session.get('user').fullname || '');
