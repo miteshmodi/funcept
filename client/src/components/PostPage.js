@@ -163,15 +163,15 @@ export default function PostPage(props) {
 
     if (post)
         return (
-            <div className="container text-center story-page" style={{marginTop:'30px'}}>
+            <div className="container-fluid text-center story-page" style={{marginTop:'30px'}}>
                 {redirectTo && <Redirect push to={redirectTo}/>}
                 <div className="row">
-                    <div className="col text-right">
+                    <div className="col-12 col-sm-12 col-md-12 text-right">
                         <button className="btn btn-light btn-sm" onClick={() => setRedirectTo('/')}>Back to Feed</button>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col  text-left">
+                    <div className="col-12 col-sm-12 text-left">
                         <a className="m-1" href={`/users/${post.userId._id}`}>{post.userId.username}</a>
                         <span className="badge badge-pill badge-light m-1">{moment(post.date).fromNow(true)}</span>
                         <span className="badge badge-pill badge-light badge-like m-1" onClick={handleUpvote} title="Like this post">
@@ -183,20 +183,20 @@ export default function PostPage(props) {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col text-left">
+                    <div className="col-12 col-sm-12 text-left">
                         <i className="fa fa-hashtag"></i> {post.tags}
                     </div>
                 </div>
                 {
                     post.fileUrl && post.fileUrl.length > 0 ?
                         <div className="row">
-                            <div className="col-10 text-left">
-                                <h4>{post.title}</h4>
+                            <div className="col-12 col-sm-12 col-md-8 col-lg-8 text-left">
+                                <h6>{post.title}</h6>
                             </div>
-                            <div className="col-sm-12 col-md-8 col-lg-8 text-left">
+                            <div className="col-12 col-sm-12 col-md-8 col-lg-8 text-left">
                                 {post.description}
                             </div>
-                            <div className="col-sm-12 col-md-4 col-lg-4 text-left">
+                            <div className="col-12 col-sm-12 col-md-4 col-lg-4 text-left">
                                 {
                                     mime.lookup(post.fileName).includes('video') &&
                                     <video className="post-page-file" controls>
@@ -208,13 +208,13 @@ export default function PostPage(props) {
                         </div>
                         :
                         <div className="row">
-                            <div className="col-12 text-left">
+                            <div className="col-12 col-sm-12 text-left">
                                 {post.text}
                             </div>
                         </div>
                 }
                 <div className="row">
-                    <div className="col text-right">
+                    <div className="col-12 col-sm-12 text-right">
                         {
                             session.get('user') && (
                                 session.get('user')._id &&

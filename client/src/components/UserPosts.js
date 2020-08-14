@@ -48,7 +48,7 @@ export default function UserPosts(props) {
                 {redirectTo && <Redirect push to={redirectTo}/>}
                 <div className="col-9 col-sm-9 col-md-9">
                     {
-                        <span className="h4" reload={reload}>Posts from {user.username}!</span>
+                        <span className="h5" reload={reload}>Posts from {user.username}!</span>
                     }
                 </div>
                 <div className="col-3 col-sm-3 col-md-3 text-right">

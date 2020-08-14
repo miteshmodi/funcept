@@ -30,17 +30,17 @@ export default function User(props) {
     }
 
     return (
-        <div className="container feed ">
+        <div className="container text-center story-box">
             <div className="row">
-                <div className="col-5 ">
+                <div className="col-8 col-xs-8 col-sm-8 col-md-8 text-left">
                     <h5 className="m-2"><a href={`/users/${props.user._id}`} title="Click to view all posts from this user.">{props.user.fullname}</a></h5>
                 </div>
-                <div className="col-5 text-right">
+                <div className="col-4 col-xs-4 col-sm-4 col-md-4 text-right">
                     <button className="btn btn-sm btn-warning m-1" onClick={handleUnfollow}>Unfollow</button>
                 </div>
             </div>
             <div className="row">
-                <div className="col-5 ">
+                <div className="col-12 col-xs-12 col-sm-12 col-md-12 text-left">
                     <i className="fa fa-info-circle m-2"></i>{props.user.about} <br />
                     <i className="fa fa-user m-2"></i>{props.user.username} <br />
                     <i className="fa fa-envelope-open m-2"></i>{props.user.email} <br />
