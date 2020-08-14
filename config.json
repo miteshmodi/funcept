@@ -1,5 +1,5 @@
 {
-    "connectionString": "mongodb://localhost:27017/funcept",
+    "connectionString": "mongodb+srv://cj:Pass4Now@cluster0.v1fvb.mongodb.net/funcept?retryWrites=true&w=majority",
     "port": 4000,
     "fileSizeLimitMBs": 10
 }
