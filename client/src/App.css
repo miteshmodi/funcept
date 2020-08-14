@@ -20,29 +20,45 @@
   html, body {
     min-width: 100% !important;
     max-width: 100% !important;
+    background-image: url("spikes.png");
+    
   }
 }
 
 .story-box {
+  position: relative;
   border: 1px solid #cecece;
+  background-color: white;
   border-radius: 5px;
   padding: 5px;
   float: left;
-  margin: 15px;
-  width: 350px;
-  max-width: 350px;
-  min-width: 350px;
-  height: 20vh;
-  max-height: 20vh;
-  min-height: 20vh;
+  height: 25vh;
+  max-height: 30vh;
+  /* m */
+  width: fit-content !important;
 }
 
+.top-posts {
+  position: relative;
+  /* border: 1px solid #cecece;
+  background-color: white; */
+  /* border-radius: 5px; */
+  padding: 5px;
+  float: left;
+  height: 25vh;
+  max-height: 30vh;
+  /* min-height: 20vh; */
+  width: fit-content !important;
+}
 .story-page {
+  position: relative;
   border: 1px solid #cecece;
-  border-radius: 5px;
+  border-radius: 0px;
   padding: 5px;
   margin-bottom: 5px;
+  background-color: white;
 }
+
 .post-page-file {
   width: 100%;
   max-width: 100%;
@@ -58,6 +74,7 @@
 }
 
 .story-body {
+  position: relative;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -65,9 +82,10 @@
   -webkit-box-orient: vertical;
   cursor: pointer;
 
-  height: 8vh !important;
+  height: 10vh !important;
   min-height: 8vh !important;
   max-height: 8vh !important;
+  width: fit-content !important;
 }
 
 .tags {
@@ -100,10 +118,13 @@
 /*  -webkit-line-clamp: 3;*/
 /*  -webkit-box-orient: vertical;*/
 /*}*/
-
-.top-posts {
-  padding-right: 0px !important;
-  padding-left: 0px !important;
+.following {
+  margin-left: 2%;
+  padding-top: 2%;
+}
+.feed {
+  padding-top: 2%;
+  margin-left: auto;
 }
 
 .file-side {
@@ -189,12 +210,11 @@ font-weight: 400;
    height: 100%;
  }
 .active .nav-link {
-  color: #aed3fb !important;
+  color: white !important;
 }
 
 .footer {
   min-height: 70px;
-  background: #aed3fb;
   position: relative;
 }
 

@@ -38,7 +38,7 @@ export default function Header(props) {
         <div>
             {redirectTo && <Redirect push to={redirectTo}/>}
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a className="navbar-brand" href="/" style={{color: '#aed3fb', fontWeight: '500'}}>
+                <a className="navbar-brand" href="/" style={{fontWeight: '500'}}>
                     <i className="fab fa-foursquare" style={{fontSize: '26px', marginRight: '10px'}}></i>
                     {config.appTitle}
                 </a>
