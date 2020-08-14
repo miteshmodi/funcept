@@ -12,6 +12,7 @@ const likes = require('./routes/like');
 const dislikes = require('./routes/dislike');
 const follows = require('./routes/follow');
 const PORT = process.env.PORT || config.port;
+const path = require("path");
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
@@ -22,6 +23,10 @@ app.use((req, res, next) => {
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+    })
 }
 
 app.use(fileUpload({
