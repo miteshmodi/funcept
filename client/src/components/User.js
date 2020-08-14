@@ -69,7 +69,7 @@ export default function User(props) {
   return (
     <div className="container text-center story-box">
       <div className="row">
-        <div className="col-5 text-left">
+        <div className="col-8 col-xs-8 col-sm-8 col-md-8 text-left">
           <h5 className="m-2">
             <a
               href={`/users/${props.user._id}`}
@@ -79,7 +79,7 @@ export default function User(props) {
             </a>
           </h5>
         </div>
-        <div className="col-5 text-right">
+        <div className="col-4 col-xs-4 col-sm-4 col-md-4 text-right">
           {props.user._id !== session.get("user")._id ? (
             props.followers.includes(session.get("user")._id) ? (
               <button

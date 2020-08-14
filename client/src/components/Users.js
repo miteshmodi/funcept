@@ -28,16 +28,16 @@ export default function Users(props) {
         data.map(user => <User key={user._id} user={user} followers={user.followers.map(x => x.followerId)} reload={reload} />);
 
     return (
-        <div className="container-fluid feed">
+        <div className="container-fluid">
             <div className="row">
-                <div className="col-6 m-2">
-                    <h4 >Users</h4>
+                <div className="col-sm-12 col-md-12">
+                    <h4 className="m-4">Users</h4>
                     <input type="text" id="txtUserKeyword" className="form-control mr-sm-2"
                            placeholder="Search users..." onChange={e => reload()}/>
                 </div>
             </div>
             <div className="row">
-                <div className="col m-2">
+                <div className="col-sm-12 col-md-12">
                     {data.length > 0 && renderUsers()}
                 </div>
             </div>

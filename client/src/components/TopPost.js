@@ -131,7 +131,7 @@ export default function TopPost(props) {
             <div className="container-fluid text-center story-box top">
                 {redirectTo && <Redirect push to={redirectTo}/>}
                 <div className="row">
-                    <div className="col text-left">
+                    <div className="col-12 col-sm-12 col-md-12 text-left">
                         <a className="m-1" href={`/users/${props.post.userId._id}`}>{props.post.userId.username}</a>
                         <span
                             className="badge badge-pill badge-light m-1">{moment(props.post.date).fromNow(true)}</span>
@@ -149,7 +149,7 @@ export default function TopPost(props) {
                 {
                     props.post.fileUrl && props.post.fileUrl.length > 0 ?
                         <div className="row">
-                            <div className="col-4  text-left" onClick={() => setShowFile(true)}>
+                            <div className="col-3 col-sm-3 col-md-3 text-left" onClick={() => setShowFile(true)}>
                                 {
                                     mime.lookup(props.post.fileName).includes('video') &&
                                     <video className="post-file">
@@ -157,7 +157,7 @@ export default function TopPost(props) {
                                     </video>
                                 }
                             </div>
-                            <div className="col-4 text-left">
+                            <div className="col-9 col-sm-9 col-md-9 text-left">
                                 <span className="story-body" title="Click to open the post in new page"
                                       onClick={handleOpenPost}>
                                     <span style={{fontWeight:'bold'}}>{props.post.title}</span> <br/>
@@ -167,7 +167,7 @@ export default function TopPost(props) {
                         </div>
                         :
                         <div className="row">
-                            <div className="col ">
+                            <div className="col-12 col-sm-12 col-md-12 text-left">
                                 <span className="story-body" title="Click to open the post in new page"
                                       onClick={handleOpenPost}>
                                     <span style={{fontWeight:'bold'}}>{props.post.title}</span> <br/>
@@ -177,7 +177,7 @@ export default function TopPost(props) {
                         </div>
                 }
                 <div className="row">
-                    <div className="col-3 " style={{paddingTop: '5px'}}>
+                    <div className="col-12 col-12 col-sm-12 col-md-12 text-left" style={{paddingTop: '10px'}}>
                         <span className="tags"><i className="fa fa-hashtag"></i>{props.post.tags}</span>
                     </div>
                 </div>

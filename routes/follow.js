@@ -31,10 +31,10 @@ router.post('/check', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const p = await followManager.check({...req.body});
-        if(p.length > 0)
+        if (p.length > 0)
             return res.status(400).send(`Already following.`);
 
-        const t = await followManager.create({ ...req.body });
+        const t = await followManager.create({...req.body});
         return res.status(200).send(t);
     } catch (ex) {
         return res.status(500).send(ex.message);
@@ -43,7 +43,7 @@ router.post('/', async (req, res) => {
 
 router.post('/remove', async (req, res) => {
     try {
-        const t = await followManager.removeFollowing({ ...req.body });
+        const t = await followManager.removeFollowing({...req.body});
         return res.status(200).send(t);
     } catch (ex) {
         return res.status(500).send(ex.message);

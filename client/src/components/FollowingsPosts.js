@@ -30,10 +30,10 @@ export default function Posts(props) {
         data.map(post => <Post reload={reload} key={post._id} post={post} />);
 
     return (
-        <div className="container-fluid feed">
+        <div className="container-fluid">
             <div className="row">
-                <div className="col-12 m-2">
-                <h4>Feed From I'm Following</h4>
+                <div className="col-12 col-sm-12 col-md-12">
+                <h4 className="m-4">Feed From I'm Following</h4>
                     {data.length > 0 && renderPosts() || <div style={{margin: '20px'}}>No posts found.</div>}
                 </div>
             </div>

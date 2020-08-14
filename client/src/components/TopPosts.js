@@ -33,7 +33,7 @@ export default function TopPosts(props) {
     return (
         <div className="container-fluid top-posts">
             <div className="row">
-                <div className="col m-2">
+                <div className="col-12 col-sm-12 col-md-12">
                     {data.length > 0 && renderPosts() || <div>No posts found.</div>}
                 </div>
             </div>

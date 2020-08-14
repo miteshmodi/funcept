@@ -48,9 +48,9 @@ export default function Posts(props) {
         data.map(post => <Post reload={reload} key={post._id} post={post} />);
 
     return (
-        <div className="container-fluid feed">
+        <div className="container-fluid">
             <div className="row">
-                <div className="col text-right">
+                <div className="col-12 col-sm-12 col-md-12 text-right">
                     {
                         session.get('user')._id &&
                         <button className="btn btn-sm btn-outline-primary" style={{ marginTop: '10px', marginRight: '10px' }}
@@ -61,15 +61,15 @@ export default function Posts(props) {
             </div>
             <div className="row">
 
-                <div className="col-7 m-2">
-                    <h4 >Top Posts</h4>
+                <div className="col-12 col-sm-12 col-md-12">
+                    <h4 className="m-4">Top Posts</h4>
                     <TopPosts />
                 </div>
             </div>
 
             <div className="row">
-                <div className="col-7 m-4">
-                    <h4>Feed</h4>
+                <div className="col-12 col-sm-12 col-md-12">
+                    <h4 className="m-4">Feed</h4>
                     {data.length > 0 && renderPosts() || <div style={{ margin: '20px' }}>No posts found.</div>}
                 </div>
             </div>

@@ -52,10 +52,10 @@ export default function Posts(props) {
         <div className="container-fluid">
             {redirectTo && <Redirect push to={redirectTo}/>}
             <div className="row">
-                <div className="col-6 m-4 text-left">
-                <h4 >My Posts</h4>
+                <div className="col-6 col-sm-6 col-md-6 text-left">
+                <h4 className="m-4">My Posts</h4>
                 </div>
-                <div className="col  text-right">
+                <div className="col-6 col-sm-6 col-md-6 text-right">
                     {
                         session.get('user')._id &&
                         <button className="btn btn-sm btn-outline-primary m-1" style={{marginTop: '10px', marginRight: '10px'}}
@@ -67,8 +67,8 @@ export default function Posts(props) {
                     </button>
                 </div>
             </div>
-            <div className="row m-2">
-                <div className="col-12">
+            <div className="row">
+                <div className="col-12 col-12 col-sm-12 col-md-12">
                     {data.length > 0 && renderPosts() || <div style={{margin: '20px'}}>No posts found.</div>}
                 </div>
             </div>

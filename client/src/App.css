@@ -26,34 +26,23 @@
 }
 
 .story-box {
-  position: relative;
   border: 1px solid #cecece;
   background-color: white;
   border-radius: 5px;
   padding: 5px;
   float: left;
-  height: 25vh;
-  max-height: 30vh;
-  /* m */
-  width: fit-content !important;
+  margin: 15px;
+  width: 350px;
+  max-width: 350px;
+  min-width: 350px;
+  height: 20vh;
+  max-height: 20vh;
+  min-height: 20vh;
 }
 
-.top-posts {
-  position: relative;
-  /* border: 1px solid #cecece;
-  background-color: white; */
-  /* border-radius: 5px; */
-  padding: 5px;
-  float: left;
-  height: 25vh;
-  max-height: 30vh;
-  /* min-height: 20vh; */
-  width: fit-content !important;
-}
 .story-page {
-  position: relative;
   border: 1px solid #cecece;
-  border-radius: 0px;
+  border-radius: 5px;
   padding: 5px;
   margin-bottom: 5px;
   background-color: white;
@@ -74,7 +63,6 @@
 }
 
 .story-body {
-  position: relative;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -82,10 +70,9 @@
   -webkit-box-orient: vertical;
   cursor: pointer;
 
-  height: 10vh !important;
+  height: 8vh !important;
   min-height: 8vh !important;
   max-height: 8vh !important;
-  width: fit-content !important;
 }
 
 .tags {
@@ -118,13 +105,10 @@
 /*  -webkit-line-clamp: 3;*/
 /*  -webkit-box-orient: vertical;*/
 /*}*/
-.following {
-  margin-left: 2%;
-  padding-top: 2%;
-}
-.feed {
-  padding-top: 2%;
-  margin-left: auto;
+
+.top-posts {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
 }
 
 .file-side {
