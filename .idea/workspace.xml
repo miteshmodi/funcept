@@ -19,7 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc487388-bbc7-4e96-9850-fe5528ec4a12" name="Default Changelist" comment="" />
+    <list default="true" id="bc487388-bbc7-4e96-9850-fe5528ec4a12" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db-connection.js" beforeDir="false" afterPath="$PROJECT_DIR$/db-connection.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,6 +30,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/client/package.json" />
   </component>
   <component name="ProjectId" id="1fZ2CFoAlvBiGFn3KNO3Lw1C6UQ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -62,6 +68,7 @@
       <updated>1596411164857</updated>
       <workItem from="1596411168304" duration="28000" />
       <workItem from="1597375275662" duration="2852000" />
+      <workItem from="1597424567261" duration="2187000" />
     </task>
     <task id="LOCAL-00001" summary="Revert &quot;made it responsive&quot;&#10;&#10;This reverts commit b81b4376">
       <created>1597375378757</created>
@@ -93,6 +100,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Revert &quot;made it responsive&quot;&#10;&#10;This reverts commit b81b4376" />
@@ -108,5 +116,21 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1596411194355" />
+    <state width="1899" height="288" key="GridCell.Tab.0.bottom" timestamp="1597425806121">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="288" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597425806121" />
+    <state width="1899" height="288" key="GridCell.Tab.0.center" timestamp="1597425806121">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="288" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597425806121" />
+    <state width="1899" height="288" key="GridCell.Tab.0.left" timestamp="1597425806121">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="288" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597425806121" />
+    <state width="1899" height="288" key="GridCell.Tab.0.right" timestamp="1597425806121">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="288" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597425806121" />
   </component>
 </project>

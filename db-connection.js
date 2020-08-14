@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 module.exports = () => {
-    mongoose.connect(process.env.MONGODB_URI || config.connectionString, {
+    mongoose.connect(process.env.MONGODB_URI || `mongodb+srv://${process.env.USER_NAME}:${process.env.DB_PASSWORD}@funcept.tz1wo.mongodb.net/test`, {
         useCreateIndex: true,
         useNewUrlParser: true,
         poolSize: 5,
