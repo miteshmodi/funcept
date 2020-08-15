@@ -1,6 +1,6 @@
 {
-    "api": "https://funcept-vlog.herokuapp.com/",
-    "appUrl": "https://funcept-vlog.herokuapp.com/",
+    "api": "https://funcept-final-project.herokuapp.com",
+    "appUrl": "https://funcept-final-project.herokuapp.com",
     "appTitle": "FunCept",
     "maxVideoDurationSeconds": 16
 }

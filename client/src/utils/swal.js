@@ -32,6 +32,7 @@ export const swalForm = (title, description, tags, file, callback) => {
         preConfirm: async () => {
             const title = document.getElementById('txt-title').value;
             const description = document.getElementById('txt-description').value;
+            const tags = document.getElementById('txt-tags').value;
             if (!title || !description)
                 return Swal.showValidationMessage(`Please provide post Title and Description fields.`);
 

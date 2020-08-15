@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { signin } from './api-auth.js'
 import auth from './auth-helper.js'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 
 function SignInForm(props) {

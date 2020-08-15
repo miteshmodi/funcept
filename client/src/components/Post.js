@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import userService from '../services/user';
 import session from '../services/session';
 import {Redirect} from 'react-router-dom';
 import config from "../config.json";
@@ -13,10 +14,12 @@ import {
     swalInfo,
     swalLoading
 } from "../utils/swal";
+import utils from "../utils/utils";
 import postService from "../services/post";
 import likeService from "../services/like";
 import dislikeService from "../services/dislike";
 import mime from "mime-types";
+import Swal from 'sweetalert2';
 import ShowFile from './ShowFile';
 
 moment.locale('en', {

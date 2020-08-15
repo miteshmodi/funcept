@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import userService from "../services/user";
 import FollowingUser from './FollowingUser';
-import {swalError} from "../utils/swal";
+import {swalError, swalSuccess, swalInfo, swalForm} from "../utils/swal";
+import session from '../services/session';
 
 export default function Users(props) {
     const [data, setData] = useState([]);
